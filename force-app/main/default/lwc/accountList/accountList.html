@@ -1,0 +1,11 @@
+<template>
+    <lightning-card title="Account List">
+        <template if:true={errors}>
+            <p>{errors}</p>
+        </template>
+        <template if:true={accounts.data}>
+            <lightning-datatable columns={columns} data={accounts.data} key-field="Id">
+            </lightning-datatable>
+        </template>
+    </lightning-card>
+</template>

@@ -1,0 +1,8 @@
+<template>
+    <lightning-input label="Unit Number" onchange={handleChange} value={unitNumber}></lightning-input>
+    <lightning-card icon-name="standard:bot" title="Unit Status">
+        <div class="slds-m-around_medium">
+            Unit {unitNumber} alive!
+        </div>
+    </lightning-card>
+</template>

@@ -1,0 +1,12 @@
+<template>
+    <lightning-card title="Account Search">
+        <lightning-input label="Number of Employees" onchange={handleChange} type="number" value={numberOfEmployees}>
+        </lightning-input>
+        <lightning-button label="Reset" onclick={reset}></lightning-button>
+        <template if:true={accounts.data}>
+            <template for:each={accounts.data} for:item="account">
+                <p key={account.Id}>{account.Name}</p>
+            </template>
+        </template>
+    </lightning-card>
+</template>
