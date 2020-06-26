@@ -1,2 +1,26 @@
-<aura:component description="LMSAuraComponentDemo">
+<aura:component description="LMSAuraComponentDemo" implements="flexipage:availableForAllPageTypes" access="global">
+    <aura:attribute name="message" type="String"/>
+    <aura:attribute name="incomingMessage" type="String"/>
+    <lightning:messageChannel aura:id="myMessageChannel"
+                              type="MyMessageChannel__c"
+                              scope="APPLICATION"
+                              onMessage="{!c.handleMessage}"
+    />
+
+    <lightning:card title="LMS Aura Component"  iconName="custom:custom16">
+        <div class="slds-m-around_medium">
+            <p>MessageChannel: MyMessageChannel__c</p>
+            <br/>
+        </div>
+        <!-- Default/basic -->
+        <div class="slds-p-around_medium lgc-bg">
+            <lightning:input label="Message" value="{!v.message}"/>
+            <lightning:button label="Publish" onclick="{!c.publishToMessageChannel}"/>
+        </div>
+
+        <div class="slds-p-around_medium lgc-bg">
+            <p>Latest Message Received</p>
+            <lightning:formattedText value="{!v.incomingMessage}"/>
+        </div>
+    </lightning:card>
 </aura:component>
