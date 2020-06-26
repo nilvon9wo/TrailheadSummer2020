@@ -12,7 +12,7 @@ public with sharing class DAO_ContactSelector {
 
     public List<Contact> selectByAccountId(Set<Id> accountIdSet) {
         return [
-                SELECT Name, Title, Email, Phone
+                SELECT Email, FirstName, LastName, Name, Title, Phone, Picture_URL__c
                 FROM Contact
                 WHERE AccountId IN :accountIdSet
                 WITH SECURITY_ENFORCED
@@ -21,7 +21,7 @@ public with sharing class DAO_ContactSelector {
 
     public List<Contact> selectAll() {
         return [
-                SELECT FirstName, LastName, Email
+                SELECT Email, FirstName, LastName, Name, Title, Phone, Picture_URL__c
                 FROM Contact
                 WITH SECURITY_ENFORCED
                 ORDER BY Name
