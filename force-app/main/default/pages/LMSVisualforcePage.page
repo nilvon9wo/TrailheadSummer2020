@@ -1,0 +1,46 @@
+<apex:page id="LMSVisualforcePage">
+    <div>
+        <p>Enter Your Message Here</p>
+        <input type="text" id="theMessage"/>
+        <button onclick="publishToMessageChannel()">Publish Message</button>
+        <br/>
+        <button onclick="subscribeToMessageChannel()">Subscribe</button>
+        <button onclick="unsubscribeToMessageChannel()">Unsubscribe</button>
+        <br/>
+        <br/>
+        <p>Received message:</p>
+        <label id="MessageChannelMessageText"/>
+    </div>
+
+    <script>
+        const SAMPLE_MESSAGE_CHANNEL = "{!$MessageChannel.MyMessageChannel__c}";
+        let subscriptionToMessageChannel;
+
+        function publishToMessageChannel() {
+            sforce.one.publish(SAMPLE_MESSAGE_CHANNEL, {
+                messageToSend: document.getElementById('theMessage').value,
+                sourceSystem: 'From VisualForce Page'
+            });
+        }
+
+        function displayMessage(message) {
+            document.querySelector('#MessageChannelMessageText').innerHTML = message
+                ? JSON.stringify(message, null, '\t')
+                : 'no message payload';
+        }
+
+        function subscribeToMessageChannel() {
+            if (!subscriptionToMessageChannel) {
+                subscriptionToMessageChannel
+                    = sforce.one.subscribe(SAMPLE_MESSAGE_CHANNEL, displayMessage, { scope: 'APPLICATION' });
+            }
+        }
+
+        function unsubscribeToMessageChannel() {
+            if (subscriptionToMessageChannel) {
+                sforce.one.unsubscribe(subscriptionToMessageChannel);
+                subscriptionToMessageChannel = null;
+            }
+        }
+    </script>
+</apex:page>
