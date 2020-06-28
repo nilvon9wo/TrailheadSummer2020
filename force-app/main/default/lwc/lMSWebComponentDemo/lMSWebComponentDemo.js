@@ -26,7 +26,6 @@ export default class LMSWebComponentDemo extends LightningElement {
     }
 
     displayMessage(message) {
-        console.log('####### displayMessage message', message);
         this.receivedMessage = message
             ? JSON.stringify(message, null, '\t')
             : 'no message payload';
