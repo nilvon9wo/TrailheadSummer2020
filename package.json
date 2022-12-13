@@ -25,6 +25,6 @@
   },
   "dependencies": {
     "c": "^1.0.0",
-    "lightning": "^2.0.16"
+    "lightning": "^6.5.0"
   }
 }
